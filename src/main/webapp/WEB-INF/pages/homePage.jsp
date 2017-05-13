@@ -62,7 +62,7 @@
 
         <div class="top-nav">
             <ul class="right-icons">
-                <li><a href="city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
+                <li><a href="/HomePage/city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
                 <li><a href="Login"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
                         class="glyphicon glyphicon-search"> </i> </a></li>
