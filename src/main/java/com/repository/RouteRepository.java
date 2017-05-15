@@ -13,4 +13,11 @@ import java.util.List;
 public interface RouteRepository extends JpaRepository<RouteEntity,Integer> {
 
     List<RouteEntity> readByRouAddrCityOrderByRouPostTimeDesc(String cityName);
+
+    List<RouteEntity> findByRouAddrCityLike(String key);
+
+    List<RouteEntity> findByRouTitleLike(String key);
+
+    List<RouteEntity> findByRouAddrProvince(String key);
+
 }

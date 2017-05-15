@@ -14,5 +14,9 @@ public interface RestaurantRepository extends JpaRepository<RestaurantEntity,Int
 
     List<RestaurantEntity> readByresAddrCityOrderByResReferNumDesc(String addrCity);
 
+    List<RestaurantEntity> findByResAddrCityLike(String key);
 
+    List<RestaurantEntity> findByResNameLike(String key);
+
+    List<RestaurantEntity> findByResStyleLike(String key);
 }

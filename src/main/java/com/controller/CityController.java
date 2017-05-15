@@ -43,11 +43,6 @@ public class CityController {
         List<RestaurantEntity> restaurantList = restaurantRepository.readByresAddrCityOrderByResReferNumDesc(addrName);
         List<RouteEntity> routeList = routeRepository.readByRouAddrCityOrderByRouPostTimeDesc(addrName);
 
-        System.out.println(hotArticles.size());
-        System.out.println(newArticles.size());
-        System.out.println(restaurantList.size());
-        System.out.println(routeList.size());
-
         modelMap.addAttribute("hotArticles",hotArticles);
         modelMap.addAttribute("newArticles",newArticles);
         modelMap.addAttribute("restaurantList",restaurantList);

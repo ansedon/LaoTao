@@ -57,7 +57,7 @@
 <div class="header">
     <div class="container">
         <!--logo-->
-        <a href="Home.servlet"><img src="images/title_fanfo.jpg" width="130"></a>
+        <a href="/Home"><img src="/images/title_fanfo.jpg" width="130"></a>
         <!--//logo-->
 
         <div class="top-nav">
@@ -71,8 +71,8 @@
         <div class="clearfix"></div>
         <!---pop-up-box---->
 
-        <link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
-        <script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+        <link href="/css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+        <script src="/js/jquery.magnific-popup.js" type="text/javascript"></script>
         <!---//pop-up-box---->
         <div id="small-dialog" class="mfp-hide">
             <!----- tabs-box ---->
@@ -89,7 +89,7 @@
                              style="display:block">
                             <div class="facts">
                                 <div class="login">
-                                    <form action="SearchServlet" method="post">
+                                    <form action="/search" method="post">
                                         <input type="text" name="key" class="glyphicon-phone" onFocus="this.value = '';"
                                                onBlur="if (this.value == '') {this.value = '搜美食/餐馆/路线等等';}"
                                                value="搜美食/餐馆/路线等等">

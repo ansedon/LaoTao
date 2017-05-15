@@ -17,4 +17,12 @@ public interface ArticleRepository extends JpaRepository<ArticleEntity,Integer> 
     List<ArticleEntity> readByArtAddrCityOrderByArtLikesNumDesc(String addrCity);
 
     List<ArticleEntity> readByArtAddrCityOrderByArtPostTimeDesc(String addrCity);
+
+    List<ArticleEntity> findByArtAddrCityLike(String key);
+
+    List<ArticleEntity> findByArtAddrProvinceLike(String key);
+
+    List<ArticleEntity> findByArtTitleLike(String key);
+
+
 }
