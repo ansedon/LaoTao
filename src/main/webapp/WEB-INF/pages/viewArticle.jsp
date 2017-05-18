@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page isELIgnored="false"%>
+<%@ page isELIgnored="false" import="com.model.UserEntity,java.sql.Date"%>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -16,12 +16,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>View Article</title>
+    <%
+        String account="login";
+        String index="../login";
+        UserEntity user=(UserEntity) session.getAttribute("currentUser");
+        if(user!=null){
+            account=user.getUserName();
+            index="../myPage";
+        }
+    %>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <!--menu-->
     <script src="/js/scripts.js"></script>
     <link href="/css/styles.css" rel="stylesheet">
+    <link href="/css/jNotify.jquery.css" rel="stylesheet" type="text/css"/>
+    <script src="/js/jNotify.jquery.js" type="text/javascript"></script>
+    <script src="/js/skill.js"></script>
     <!--//menu-->
     <!--theme-style-->
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -37,12 +49,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <!--logo-->
-        <a href="Home"><img src="/images/title_fanfo.jpg" width="130" ></a>
+        <a href="/"><img src="/images/title.jpg" width="130" ></a>
         <!--//logo-->
         <div class="top-nav">
             <ul class="right-icons">
-                <li><a  href="city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
-                <li><a  href="Login"><i class="glyphicon glyphicon-user"> </i>Login</a></li>
+                <li><a  href="../city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
+                <li><a  href="<%=index%>"><i class="glyphicon glyphicon-user"> </i><%=account%></a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i> </a></li>
             </ul>
         </div>
@@ -64,16 +76,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h2 class="resp-accordion resp-tab-active" role="tab" aria-controls="tab_item-0"><span class="resp-arrow"></span>全部</h2><div class="tab-1 resp-tab-content resp-tab-content-active" aria-labelledby="tab_item-0" style="display:block">
                         <div class="facts">
                             <div class="login">
-                                <form action="SearchServlet" method="post">
+                                <form action="/search" method="get">
                                     <input type="text" name="key" class="glyphicon-phone" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = '搜美食/餐馆/路线等等';}" value="搜美食/餐馆/路线等等">
                                     <input type="submit" value="" >
                                 </form>
                             </div>
                         </div>
                     </div>
-
                     </div>
-
                 </div>
                 <script>
                     $(document).ready(function() {
@@ -101,12 +111,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="col-md-9 blog-head">
             <div class="blog-top">
                 <h4>${article.artTitle}</h4>
-                <h5>Posted By :${article.artId}(level ) | Date : ${article.artPostTime} | Read_Num : ${article.artReadNum}</h5>
+                <h5>Posted By :${article.userByArtUserId.userName}(level:${article.userByArtUserId.userLevel}) | Date : ${article.artPostTime} | Read_Num : ${article.artReadNum}</h5>
                 <p>${article.artContent}</p>
+                <div class="links">
+                    <ul class="blog-links">
+                        <c:if test = "${ifLike}">
+                            <li><i class="glyphicon glyphicon-heart"></i><span>已赞</span></li>
+                        </c:if>
+                        <c:if test = "${!ifLike}">
+                            <li><a href="ArticleOPServlet?type=agree"><i class="glyphicon glyphicon-heart"></i><span>赞</span></a></li>
+                        </c:if>
+                        <c:if test = "${ifCollected}">
+                            <li><i class="glyphicon glyphicon-heart"></i><span>已收藏</span></li>
+                        </c:if>
+                        <c:if test = "${!ifCollected}">
+                            <li><a href="ArticleOPServlet?type=agree"><i class="glyphicon glyphicon-heart"></i><span>收藏</span></a></li>
+                        </c:if>
+                        <c:if test = "${ifReport}">
+                            <li><i class="glyphicon glyphicon-heart"></i><span>已举报</span></li>
+                        </c:if>
+                        <c:if test = "${!ifReport}">
+                            <li><a href="ArticleOPServlet?type=agree"><i class="glyphicon glyphicon-heart"></i><span>举报</span></a></li>
+                        </c:if>
+                    </ul>
+                </div>
             </div>
             <div class="single-grid">
                 <h5>Our Comment</h5>
-            <c:forEach items ="${comments}" var ="comment">
+            <c:forEach items ="${comList}" var ="comment">
                 <div class="media">
                     <div class="media-left">
                         <a href="#">
@@ -114,51 +146,63 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
                     </div>
                     <div class="media-body">
-                        <h4 class="media-heading">${comment.commentatorId}</h4>
+                        <h4 class="media-heading">${comment.userByCommentatorId.userName}</h4>
                         <p>${comment.artComContent}</p>
                     </div>
                 </div>
             </c:forEach>
             </div>
+            <div class="leave">
+                <c:if test = "${!ifComment}" >
+                    <h5>Leave a Comment</h5>
+                    <form action="ArtOP">
+                        <textarea name="comment" placeholder="comment" required></textarea>
+                        <label class="hvr-sweep-to-right">
+                            <input type="submit" value="Post Comment">
+                        </label>
+                    </form>
+                </c:if>
+                <c:if test = "${ifComment}">
+                    <h5>已评论过</h5>
+                </c:if>
+            </div>
         </div>
-    </div>
     <div class="col-md-5 blog-sidebar">
         <div class="blog-list">
             <h4> 提及的餐馆：</h4>
-            <%
-                List<Restaurant> res = (List)session.getAttribute("Restaurant");
-                for(int i = 0;i < 4 && i<res.size();i++) {
-                    Restaurant p = res.get(i);%>
-            <div class="col-md-3 project-grid">
-                <div class="project-grid-top">
-                    <a><img src=<%=p.getRes_pic() %> class="img-responsive zoom-img" alt=""></a>
-                    <div class="col-md1">
-                        <div class="col-md2">
-                            <div class="col-md3">
-                                <span class="star"><%=p.getRes_score() %></span>
+                <c:forEach items = "${restaurant}" var = "res">
+                    <div class="col-md-3 project-grid">
+                        <div class="project-grid-top">
+                            <a><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
+                            <div class="col-md1">
+                                <div class="col-md2">
+                                    <div class="col-md3">
+                                        <span class="star">${res.resScore}</span>
+                                    </div>
+                                    <div class="col-md4">
+                                        <strong>${res.resName}</strong>
+                                        <small>${res.resReferNum}次推荐</small>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                                <p>地址：${res.resAddrCity}${res.resAddrStreet}</p>
+                                <p>类别：${res.resStyle}</p>
+                                <p class="cost">人均：¥${res.resAverageCost}</p>
+                                <a onclick="resCollect(${res.resId})" class="hvr-sweep-to-right more">想吃</a>
                             </div>
-                            <div class="col-md4">
-                                <strong><%=p.getRes_name() %></strong>
-                                <small><%=p.getRes_refer_num() %>次推荐</small>
-                            </div>
-                            <div class="clearfix"> </div>
                         </div>
-                        <p>地址：<%=p.getRes_addr_city() %><%=p.getRes_addr_street() %></p>
-                        <p>类别：<%=p.getRes_style() %></p>
-                        <p class="cost">人均：¥<%=p.getRes_average_cost() %></p>
-
-                        <a href="RestaurantOP?method=collectRes&resId=<%=p.getRes_id() %>&href=HomePage.jsp" class="hvr-sweep-to-right more">想吃</a>
                     </div>
-                </div>
+                </c:forEach>
             </div>
-            <%} %>
+            <div class="clearfix"> </div>
         </div>
+    </div>
 </div>
 <div class="footer">
     <div class="footer-bottom">
         <div class="container">
             <div class="col-md-4 footer-logo">
-                <h2><a href="Home">Laotao</a></h2>
+                <h2><a href="/">Laotao</a></h2>
             </div>
             <div class="clearfix"> </div>
         </div>

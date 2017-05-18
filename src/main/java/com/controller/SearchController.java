@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,19 +23,20 @@ public class SearchController {
     @Autowired
     SearchService searchService;
 
-    @RequestMapping(value="search",method = RequestMethod.GET)
-    public String search(@RequestParam("key") String key, ModelMap modelMap){
+    @RequestMapping(value="/search",method = RequestMethod.GET)
+    public String search(@RequestParam("key") String key, ModelMap modelMap, HttpSession session){
         //String key1 = "海";
+        System.out.print(key);
         List<ArticleEntity> artList = searchService.searchArticleByKey(key);
         List<RestaurantEntity> resList = searchService.searchRestaurantByKey(key);
         List<RouteEntity> rouList = searchService.searchRouteByKey(key);
-
+        session.setAttribute("artNum",artList.size());
+        session.setAttribute("resNum",resList.size());
+        session.setAttribute("rouNum",rouList.size());
         modelMap.addAttribute("key",key);
         modelMap.addAttribute("searchArticles",artList);
         modelMap.addAttribute("searchRestaurants",resList);
         modelMap.addAttribute("searchRoutes",rouList);
-
         return "searchPage";
     }
-
 }

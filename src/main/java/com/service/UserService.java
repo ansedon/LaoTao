@@ -1,5 +1,6 @@
 package com.service;
 
+import com.model.RouteEntity;
 import com.model.UserEntity;
 import com.repository.UserRepository;
 import com.tool.GetDate;
@@ -61,5 +62,16 @@ public class UserService {
         userRepository.saveAndFlush(userEntity);
         map.put("msg", "1");
         return map;
+    }
+
+    public UserEntity getUserByName(String userName)
+    {
+        user = userRepository.findByUserName(userName);
+        return user;
+    }
+
+    public boolean updateMoney(UserEntity user, RouteEntity routeEntity){
+        userRepository.updateUser(user.getUserMoney()-routeEntity.getRouPrice(),user.getUserExperience()+10,user.getUserId());
+        return true;
     }
 }

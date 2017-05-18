@@ -68,13 +68,12 @@ public class SearchService {
         rouList.addAll(h);
 
         List<RouteEntity> newRouList = new ArrayList<RouteEntity>();
-       for(RouteEntity rou : rouList) {
-           if (Integer.parseInt(rou.getRouStatus()) == 1) {
-               newRouList.add(rou);
-           }
-
-       }
-       return  newRouList;
+        for(RouteEntity rou : rouList) {
+            if (Integer.parseInt(rou.getRouStatus()) == 1) {
+                newRouList.add(rou);
+            }
+        }
+        return  newRouList;
 
     }
 

@@ -41,7 +41,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <!--logo-->
-        <a href="/Home"><img src="/images/title_Laotao.jpg" width="130" ></a>
+        <a href="/"><img src="/images/title.jpg" width="130" ></a>
     </div>
 </div>
 <!--//-->
@@ -55,7 +55,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script type="text/javascript">
             $(function() {
                 var menu_ul = $('.menu > li > ul'),
-                        menu_a  = $('.menu > li > a');
+                    menu_a  = $('.menu > li > a');
                 menu_ul.hide();
                 menu_a.click(function(e) {
                     e.preventDefault();
@@ -68,7 +68,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         $(this).next().stop(true,true).slideUp('normal');
                     }
                 });
-
             });
         </script>
 
@@ -363,7 +362,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="footer-bottom">
             <div class="container">
                 <div class="col-md-4 footer-logo">
-                    <h2><a href="Home">Laotao</a></h2>
+                    <h2><a href="/">Laotao</a></h2>
                 </div>
                 <!--<div class="col-md-8 footer-class">
                     <p >Copyright &copy; 2015.Company name All rights reserved.<a target="_blank" href="http://www.cssmoban.com/">&#x7F51;&#x9875;&#x6A21;&#x677F;</a></p>

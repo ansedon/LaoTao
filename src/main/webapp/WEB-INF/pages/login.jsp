@@ -31,6 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <!--logo-->
+        <a href="/"><img src="images/title.jpg" width="130"></a>
         <!--//logo-->
         <div class="top-nav">
             <ul class="right-icons">
@@ -58,7 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="login-top">
             <div id="tip" style=" border:0px ;text-align:center"></div>
             <div class="form-info">
-                <input type="text" class="text" placeholder="username" required name="username" id="username">
+                <input type="text" class="text" placeholder="username" required name="username" id="userName">
                 <input type="password" placeholder="Password" required name="password" id="password">
                 <label class="hvr-sweep-to-right">
                     <input type="submit" id="login" value="submit" onclick="login()">
@@ -78,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer-bottom">
         <div class="container">
             <div class="col-md-4 footer-logo">
-                <h2><a href="Home">Fanfo</a></h2>
+                <h2><a href="/">Laotao</a></h2>
             </div>
             <div class="clearfix"></div>
         </div>

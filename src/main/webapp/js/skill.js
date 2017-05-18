@@ -10,9 +10,9 @@ function disapper(){
 
 function login() {
     var domain = "http://localhost:8080";
-    var username = $("#username").val().trim();
+    var username = $("#userName").val().trim();
     var password = $("#password").val().trim();
-    var value = {"username": username, "password": password};
+    var value = {"userName": username, "password": password};
     $.ajax({
         url: domain + "/checkLogin",
         type: "post",
@@ -21,7 +21,7 @@ function login() {
         data: JSON.stringify(value),
         success: function (map) {
             if (map.msg == "1") {
-                location.href = "/homePage";
+                location.href = "/";
             } else {
                 $("#tip").show();
                 $("#tip").html("用户名或密码错误");
@@ -73,7 +73,7 @@ function register(){
                 $("#tip").show();
                 $("#tip").html("注册成功");
                 showTip();
-                location.href="/homePage";
+                location.href="/";
             }
             else if(map.msg=="user name exists")
             {
@@ -102,6 +102,64 @@ function register(){
             $("#tip").show();
             $("#tip").html("发生异常，请重试");
             showTip();
+        }
+    })
+}
+
+function resCollect(cresId){
+    var domain="http://localhost:8080";
+    var resId=cresId;
+    var method="collectRes";
+    var value={"resId":resId,"method":method};
+    $.ajax({
+        url:domain+"/resCollect",
+        type:"post",
+        dataType:"json",
+        contentType:"application/json;charset:utf-8",
+        data:JSON.stringify(value),
+        success:function (map) {
+            if (map.msg == "请先登录") {
+                console.log("请登录");
+                jNotify("<strong>请登录</strong>", {
+                    VerticalPosition: 'center',
+                    HorizontalPosition: 'center',
+                    clickOverlay: true,
+                    autoHide: false,
+                    MinWidth : 150,
+                });
+            }
+            else if(map.msg=="收藏成功")
+            {
+                console.log("收藏成功");
+                jNotify("<strong>收藏成功</strong>", {
+                    VerticalPosition: 'center',
+                    HorizontalPosition: 'center',
+                    clickOverlay: true,
+                    autoHide: false,
+                    MinWidth : 150,
+                });
+            }
+            else if(map.msg=="您已收藏")
+            {
+                console.log("您已收藏");
+                jNotify("<strong>您已收藏</strong>", {
+                    VerticalPosition: 'center',
+                    HorizontalPosition: 'center',
+                    clickOverlay: true,
+                    autoHide: false,
+                    MinWidth : 150,
+                });
+            }
+        },
+        error:function() {
+            console.log("发生异常");
+            jNotify("<strong>发生异常，请重试</strong>", {
+                VerticalPosition: 'center',
+                HorizontalPosition: 'center',
+                clickOverlay: true,
+                autoHide: false,
+                MinWidth : 220,
+            });
         }
     })
 }

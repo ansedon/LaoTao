@@ -31,7 +31,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <!--logo-->
-        <a href="Home"><img src="images/title_fanfo.jpg" width="130" ></a>
+        <a href="/"><img src="images/title.jpg" width="130" ></a>
         <!--//logo-->
         <div class="top-nav">
             <ul class="right-icons">
@@ -85,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <label class="hvr-sweep-to-right">
                         <input type="submit" value="Sign Up" id="submit" onclick="register()">
                     </label>
-                <p>Already have a Fanfo account? <a href="/">Login</a></p>
+                <p>Already have a Fanfo account? <a href="/login">Login</a></p>
             </div>
         </div>
     </div>

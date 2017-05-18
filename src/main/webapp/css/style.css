@@ -803,6 +803,13 @@ a.more{
 a.more:hover{
 	color:#fff;
 }
+
+.search-res {
+	padding-top: 30px;
+	display: flex;
+	flex-flow: row wrap;
+}
+
 .project-top {
 	/* [disabled]padding-bottom: 30px; */
 	/* [disabled]padding-top: 30px; */

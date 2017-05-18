@@ -1,7 +1,7 @@
 package com.model;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by ansedon on 2017/4/26.
