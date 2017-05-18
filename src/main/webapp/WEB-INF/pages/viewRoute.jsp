@@ -130,27 +130,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
             </div>
             <!---->
-            <div class="single-grid">
-                <h5>&nbsp;</h5>
-                <h5>路线评论：</h5>
-                <c:forEach items="${comment}" var="com">
-                    <c:if test="${com.rouComment!=null}">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="/images/av.png" alt=""/>
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">${com.userByTradeUserId.userName}</h4>
-                                <p>${com.rouComment}</p>
-                            </div>
-                        </div>
-                    </c:if>
-                </c:forEach>
-            </div>
-            <!---->
+            <c:if test="${comment.size()==0}">
+                <div class="single-grid">
+                    <h5>&nbsp;</h5>
+                    <h5>还没有评论</h5>
+                </div>
+            </c:if>
 
+            <c:if test="${comment.size()!=0}">
+                <div class="single-grid">
+                    <h5>&nbsp;</h5>
+                    <h5>路线评论：</h5>
+                    <c:forEach items="${comment}" var="com">
+                        <c:if test="${com.rouComment!=null}">
+                            <div class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="/images/av.png" alt=""/>
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">${com.userByTradeUserId.userName}</h4>
+                                    <p>${com.rouComment}</p>
+                                </div>
+                            </div>
+                        </c:if>
+                    </c:forEach>
+                </div>
+            </c:if>
         </div>
 
         <div class="col-md-5 blog-sidebar">
@@ -170,7 +177,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </c:if>
                                 </c:if>
                                 <c:if test="<%=user==null%>">
-                                        <a class="hvr-sweep-to-right more" href="/login">购买路线</a>
+                                    <a class="hvr-sweep-to-right more" href="/login">购买路线</a>
                                 </c:if>
                             </c:if>
 
