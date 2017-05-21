@@ -23,7 +23,15 @@ public class RestaurantEntity {
     private Collection<ResCollectEntity> resCollectsByResId;
     private Collection<ResMarkEntity> resMarksByResId;
 
+    private Integer userMark;
+    @Transient
+    public int getUserMark(){return userMark;}
+    @Transient
+    public void setUserMark(int userMark){this.userMark = userMark;}
+
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "res_id", nullable = false)
     public int getResId() {
         return resId;

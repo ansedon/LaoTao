@@ -39,6 +39,7 @@ public class UserEntity {
     private Collection<RouteEntity> routesByUserId_0;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     public int getUserId() {
         return userId;

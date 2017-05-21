@@ -2,8 +2,11 @@ package com.repository;
 
 import com.model.RestaurantEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,4 +30,16 @@ public interface RestaurantRepository extends JpaRepository<RestaurantEntity,Int
 
     List<RestaurantEntity> findByResStyleLike(String key);
 
+    RestaurantEntity findByResId(int resId);
+
+    @Transactional
+    @Modifying
+    @Query("update RestaurantEntity r set r.resReferNum=r.resReferNum+?1 where r.resId=?2")
+    void updateReferNum(int changeNum,int resId);
+
+
+    @Modifying
+    @Transactional
+    @Query("update RestaurantEntity res set res.resScore=:resScore where res.resId=:resId")
+    void updateResScore(@Param("resScore") double resScore, @Param("resId") int resId);
 }

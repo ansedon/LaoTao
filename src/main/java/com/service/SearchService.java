@@ -77,6 +77,12 @@ public class SearchService {
 
     }
 
+    public List<RestaurantEntity>searchRestaurantByNameLike(String name)
+    {
+        name="%"+name+"%";
+       return restaurantRepository.findByResNameLike(name);
+    }
+
 
     private class compareArticlesByNumofLikes implements Comparator<ArticleEntity> {
         public int compare(ArticleEntity a1, ArticleEntity a2) {
@@ -84,12 +90,11 @@ public class SearchService {
         }
     }
 
+
     private class compareRestaurantByScore implements Comparator<RestaurantEntity> {
         public int compare(RestaurantEntity r1, RestaurantEntity r2) {
             double result = r2.getResScore() - r1.getResScore();
             return (int) result;
         }
     }
-
-
 }

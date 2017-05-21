@@ -17,12 +17,12 @@
 
     <title>View Article</title>
     <%
-        String userName="";
+        String userName = "";
         String account = "login";
         String index = "../login";
         UserEntity user = (UserEntity) session.getAttribute("currentUser");
         if (user != null) {
-            userName=user.getUserName();
+            userName = user.getUserName();
             account = user.getUserName();
             index = "../myPage";
         }
@@ -60,7 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul class="right-icons">
                 <li><a href="../city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
-                <li><a href="<%=index%>"><i  class="glyphicon glyphicon-user"> </i><%=account%>
+                <li><a href="<%=index%>"><i class="glyphicon glyphicon-user"> </i><%=account%>
                 </a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
                         class="glyphicon glyphicon-search"> </i> </a></li>
@@ -180,7 +180,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <h5>Leave a Comment</h5>
                     <textarea id="comment" name="comment" placeholder="comment" required></textarea>
                     <label class="hvr-sweep-to-right">
-                        <input type="submit" value="Post Comment" onclick="artComment('<%=userName%>',${article.artId})">
+                        <input type="submit" value="Post Comment"
+                               onclick="artComment('<%=userName%>',${article.artId})">
                     </label>
                 </c:if>
                 <c:if test="${ifComment}">
@@ -190,30 +191,32 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="col-md-5 blog-sidebar">
             <div class="blog-list">
-                <h4> 提及的餐馆：</h4>
-                <c:forEach items="${restaurant}" var="res">
-                    <div class="col-md-3 project-grid">
-                        <div class="project-grid-top">
-                            <a><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
-                            <div class="col-md1">
-                                <div class="col-md2">
-                                    <div class="col-md3">
-                                        <span class="star">${res.resScore}</span>
+                <c:if test="${restaurant.size()!=0}">
+                    <h4> 提及的餐馆：</h4>
+                    <c:forEach items="${restaurant}" var="res">
+                        <div class="col-md-3 project-grid">
+                            <div class="project-grid-top">
+                                <a><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
+                                <div class="col-md1">
+                                    <div class="col-md2">
+                                        <div class="col-md3">
+                                            <span class="star">${res.resScore}</span>
+                                        </div>
+                                        <div class="col-md4">
+                                            <strong>${res.resName}</strong>
+                                            <small>${res.resReferNum}次推荐</small>
+                                        </div>
+                                        <div class="clearfix"></div>
                                     </div>
-                                    <div class="col-md4">
-                                        <strong>${res.resName}</strong>
-                                        <small>${res.resReferNum}次推荐</small>
-                                    </div>
-                                    <div class="clearfix"></div>
+                                    <p>地址：${res.resAddrCity}${res.resAddrStreet}</p>
+                                    <p>类别：${res.resStyle}</p>
+                                    <p class="cost">人均：¥${res.resAverageCost}</p>
+                                    <a onclick="resCollect(${res.resId})" class="hvr-sweep-to-right more">想吃</a>
                                 </div>
-                                <p>地址：${res.resAddrCity}${res.resAddrStreet}</p>
-                                <p>类别：${res.resStyle}</p>
-                                <p class="cost">人均：¥${res.resAverageCost}</p>
-                                <a onclick="resCollect(${res.resId})" class="hvr-sweep-to-right more">想吃</a>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </c:forEach>
+                </c:if>
             </div>
             <div class="clearfix"></div>
         </div>

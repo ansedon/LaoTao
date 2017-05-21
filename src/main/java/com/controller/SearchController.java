@@ -25,8 +25,6 @@ public class SearchController {
 
     @RequestMapping(value="/search",method = RequestMethod.GET)
     public String search(@RequestParam("key") String key, ModelMap modelMap, HttpSession session){
-        //String key1 = "海";
-        System.out.print(key);
         List<ArticleEntity> artList = searchService.searchArticleByKey(key);
         List<RestaurantEntity> resList = searchService.searchRestaurantByKey(key);
         List<RouteEntity> rouList = searchService.searchRouteByKey(key);

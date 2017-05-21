@@ -11,7 +11,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Route_Single</title>
+    <title>View Route</title>
     <%
         String account = "login";
         String index = "../login";

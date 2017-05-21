@@ -5,19 +5,23 @@ import com.repository.RouTradeRepository;
 import com.repository.RouteRepository;
 import com.repository.UserRepository;
 import com.service.RouteService;
+import com.service.UserPageService;
 import com.service.UserService;
 import com.tool.GetDate;
+import com.tool.ImgUtil;
+import com.tool.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by tciisxy on 2017/5/16.
@@ -34,6 +38,8 @@ public class RouteController {
     UserService userService;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    UserPageService userPageService;
 
     @RequestMapping(value = "/readRoute/{id}", method = RequestMethod.GET)
     public String ShowRoute(@PathVariable("id") Integer routeId, ModelMap modelMap, HttpSession session)
@@ -67,17 +73,30 @@ public class RouteController {
         return "buyRoute";
     }
 
-    @RequestMapping(value = "/buyConfirm/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/markRoute/{id}", method = RequestMethod.GET)
     public String BuyConfirm(@PathVariable("id") Integer routeId, ModelMap modelMap, HttpSession session){
         UserEntity user = (UserEntity) session.getAttribute("currentUser");
         RouteEntity routeEntity = routeRepository.findOne(routeId);
         modelMap.addAttribute("route",routeEntity);
         modelMap.addAttribute("user",user);
-        return "buyConfirm";
+        return "markRoute";
     }
 
-    @RequestMapping(value = "/finishBuy/{id}", method = RequestMethod.POST)
-    public String rouOp(@PathVariable("id") Integer routeId, ModelMap modelMap, HttpSession session,@RequestParam("comment")String comment){
+    @RequestMapping(value = "/routeFinish/{id}", method = RequestMethod.POST)
+    public String routeFinish(@PathVariable("id")Integer routeId,@RequestParam("comment")String comment, HttpSession session)
+    {
+        UserEntity user = (UserEntity)session.getAttribute("currentUser");
+        int userId = user.getUserId();
+        userPageService.confirmTrade(userId,routeId,comment);
+        //更新经验和等级
+        UserEntity userEntity=(UserEntity)session.getAttribute("currentUser");
+        userEntity=userService.updateUserExpAndLevel(userEntity.getUserId(),5);
+        session.setAttribute("currentUser",userEntity);
+        return "redirect:/myPage";
+    }
+
+    @RequestMapping(value = "/finishBuy/{id}", method = RequestMethod.GET)
+    public String rouOp(@PathVariable("id") Integer routeId, ModelMap modelMap, HttpSession session){
         UserEntity user = (UserEntity) session.getAttribute("currentUser");
         RouteEntity routeEntity = routeRepository.findOne(routeId);
         if (user == null) {
@@ -90,20 +109,65 @@ public class RouteController {
                 RouTradeEntity rouTradeEntity = new RouTradeEntity();
                 rouTradeEntity.setTradeRouId(routeId);
                 rouTradeEntity.setTradeUserId(userId);
-                rouTradeEntity.setRouComment(comment);
                 GetDate getTime = new GetDate();
                 java.sql.Date reg_time = null;
                 reg_time = getTime.getNetworkTime("http://www.baidu.com");
                 if(reg_time==null)
                     reg_time= new java.sql.Date(new java.util.Date().getTime());
                 rouTradeEntity.setRouTradeTime(reg_time);
-                rouTradeEntity.setRouTradeStatus("1");
+                rouTradeEntity.setRouTradeStatus("0");
                 routeService.buyConfirm(rouTradeEntity);
-                userService.updateMoney(user,routeEntity);
+                userService.updateUser(-1*routeEntity.getRouPrice(),10,user.getUserId());
+                //更新经验和等级
+                UserEntity userEntity=(UserEntity)session.getAttribute("currentUser");
+                userEntity=userService.updateUserExpAndLevel(userEntity.getUserId(),50);
+                session.setAttribute("currentUser",userEntity);
                 user = userRepository.findOne(user.getUserId());
                 session.setAttribute("currentUser",user);
             }
         }
-        return "myPage";
+        return "redirect:/myPage";
     }
+
+    @RequestMapping(value = "/writeRoute", method=RequestMethod.GET)
+    public String writeRoute()
+    {
+        return "writeRoute";
+    }
+
+
+    @RequestMapping(value = "/postRoute", method=RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Object> postRoute(@RequestBody Map<String,String> data,HttpSession session)
+    {
+        Map<String,String >map=new HashMap<>();
+        RouteEntity routeEntity=new RouteEntity();
+        routeEntity.setRouAddrProvince(data.get("rouAddrProvince").trim());
+        routeEntity.setRouAddrCity(data.get("rouAddrCity").trim());
+        routeEntity.setRouPrice(Integer.parseInt(data.get("rouPrice").trim()));
+        routeEntity.setRouUserId(Integer.parseInt(data.get("userId").trim()));
+        routeEntity.setRouContent(data.get("content").trim());
+        GetDate getDate=new GetDate();
+        java.sql.Date time=null;
+        time=getDate.getNetworkTime("http://www.baidu.com");
+        if(time==null)
+            time=new java.sql.Date(new java.util.Date().getTime());
+        routeEntity.setRouPostTime(time);
+        routeEntity.setRouTitle(data.get("rouTitle").trim());
+        routeEntity.setRouStatus("0");
+        List list = ImgUtil.getImageSrc(data.get("content").trim());
+        String picturePath=null;
+        if(list.size()>0)picturePath = StringUtil.listToString(list, ',');
+        else picturePath="images/1482598428903086856.png";
+        routeEntity.setRouTitlePic(picturePath);
+        routeRepository.saveAndFlush(routeEntity);
+        //更新经验和等级
+        UserEntity userEntity=(UserEntity)session.getAttribute("currentUser");
+        userEntity=userService.updateUserExpAndLevel(userEntity.getUserId(),50);
+        session.setAttribute("currentUser",userEntity);
+        map.put("msg","success");
+        return new ResponseEntity<Object>(map, HttpStatus.OK);
+    }
+
+
 }

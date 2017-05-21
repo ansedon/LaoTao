@@ -31,6 +31,7 @@ public class ArticleEntity {
     private Integer artUserId;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "art_id", nullable = false)
     public int getArtId() {
         return artId;

@@ -29,6 +29,15 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+        <!-- 指定所上传文件的总大小不能超过200KB。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和 -->
+         <property name="maxUploadSize" value="20000000"/>
+        <!-- 指定上传文件的临时路径 -->
+         <property name="uploadTempDir" value="/images" />
+    </bean>
+
     <!-- 表示JPA Repository所在的包 -->
     <jpa:repositories base-package="com.repository"/>
 
@@ -48,12 +57,13 @@
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
         <property name="messageConverters">
             <list>
-                <ref bean="jsonHttpMessageConverter" />
+                <ref bean="jsonHttpMessageConverter"/>
             </list>
         </property>
     </bean>
 
-    <bean id="jsonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    <bean id="jsonHttpMessageConverter"
+          class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
                 <value>application/json;charset=UTF-8</value>

@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <a href="recharge.jsp" class="hvr-sweep-to-right more">去充值</a>
                     </c:if>
                     <c:if test="${user.userMoney >= route.rouPrice}">
-                        <a href="/buyConfirm/${route.rouId}" class="hvr-sweep-to-right more">确认购买</a>
+                        <a href="../finishBuy/${route.rouId}" class="hvr-sweep-to-right more">确认购买</a>
                     </c:if>
                 </li>
                 <li>

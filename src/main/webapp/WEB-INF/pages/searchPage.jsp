@@ -38,7 +38,7 @@
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
     <link href="css/myStyle.css" rel="stylesheet" type="text/css" media="all"/>
     <script type="text/javascript" src="js/jNotify.jquery.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/jNotify.jquery.css" />
+    <link rel="stylesheet" type="text/css" href="css/jNotify.jquery.css"/>
     <style type="text/css">
         @import url("/css/mfw-place.css");
         @import url("/css/city_css_69a039e8b84ca46d4a57c054a5cb5e53.css");
@@ -68,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <!--//logo-->
         <div class="top-nav">
             <ul class="right-icons">
-                <li><a href=<%=account%>><i class="glyphicon glyphicon-user"> </i><%=account%>
+                <li><a href=<%=index%>><i class="glyphicon glyphicon-user"> </i><%=account%>
                 </a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
                         class="glyphicon glyphicon-search"> </i> </a></li>
@@ -162,7 +162,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="plcHotPlaceContent" style="display: block;">
             <div class="search-res">
                 <%
-                    int pagesize1 =8;
+                    int pagesize1 = 8;
                     int introwcount1 = (int) session.getAttribute("resNum");
                     int intPagecount1 = (introwcount1 + pagesize1 - 1) / pagesize1;
                     int intPage1;
@@ -209,42 +209,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="clearfix"></div>
 
             </div>
-            <nav>
-                <ul class="pagination">
-                    <%
-                        if (intPage1 > 1) {
-                    %>
-                    <li><a href="?page1=<%=intPage1-5 %>&tab=0&key=${key}" aria-label="Previous"><span
-                            aria-hidden="true">«</span></a></li>
-                    <li><a href="?page1=1&tab=0&key=${key}">1</a></li>
-                    <%if (intPage1 > 2) { %>
-                    <li><a href="#">...</a></li>
-                    <li><a href="?page1=<%=intPage1-1 %>&tab=0&key=${key}"><%=intPage1 - 1 %>
-                    </a></li>
-                    <%
+            <c:if test="<%=intPagecount1>1%>">
+                <nav>
+                    <ul class="pagination">
+                        <%
+                            if (intPage1 > 1) {
+                        %>
+                        <li><a href="?page1=<%=intPage1-5 %>&tab=0&key=${key}" aria-label="Previous"><span
+                                aria-hidden="true">«</span></a></li>
+                        <li><a href="?page1=1&tab=0&key=${key}">1</a></li>
+                        <%if (intPage1 > 2) { %>
+                        <li><a href="#">...</a></li>
+                        <li><a href="?page1=<%=intPage1-1 %>&tab=0&key=${key}"><%=intPage1 - 1 %>
+                        </a></li>
+                        <%
+                                }
                             }
-                        }
-                    %>
-                    <li class="active"><a href="?page1=<%=intPage1%>&tab=0&key=${key}"><%=intPage1 %>
-                    </a></li>
-                    <%
-                        if (intPage1 < intPagecount1) {
-                            if (intPage1 < intPagecount1 - 1) {
-                    %>
-                    <li><a href="?page1=<%=intPage1+1 %>&tab=0&key=${key}"><%=intPage1 + 1 %>
-                    </a></li>
-                    <li><a href="#">...</a></li>
-                    <%} %>
-                    <li><a href="?page1=<%=intPagecount1 %>&tab=0&key=${key}"><%=intPagecount1%>
-                    </a></li>
-                    <li><a href="?page1=<%=intPage1+5 %>&tab=0&key=${key}" aria-label="Next"><span
-                            aria-hidden="true">»</span></a></li>
-                    <%} %>
-                </ul>
-            </nav>
+                        %>
+                        <li class="active"><a href="?page1=<%=intPage1%>&tab=0&key=${key}"><%=intPage1 %>
+                        </a></li>
+                        <%
+                            if (intPage1 < intPagecount1) {
+                                if (intPage1 < intPagecount1 - 1) {
+                        %>
+                        <li><a href="?page1=<%=intPage1+1 %>&tab=0&key=${key}"><%=intPage1 + 1 %>
+                        </a></li>
+                        <li><a href="#">...</a></li>
+                        <%} %>
+                        <li><a href="?page1=<%=intPagecount1 %>&tab=0&key=${key}"><%=intPagecount1%>
+                        </a></li>
+                        <li><a href="?page1=<%=intPage1+5 %>&tab=0&key=${key}" aria-label="Next"><span
+                                aria-hidden="true">»</span></a></li>
+                        <%} %>
+                    </ul>
+                </nav>
+            </c:if>
         </div>
         <div class="plcHotPlaceContent" style="display: none;">
-            <div class="project-top">
+            <div class="search-res">
                 <%
                     int pagesize2 = 4;
                     int introwcount2 = (int) session.getAttribute("rouNum");
@@ -278,6 +280,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </c:forEach>
                 <div class="clearfix"></div>
+            </div>
+            <c:if test="<%=intPagecount2>1%>">
                 <nav>
                     <ul class="pagination">
                         <%
@@ -311,7 +315,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <%} %>
                     </ul>
                 </nav>
-            </div>
+            </c:if>
         </div>
 
         <div class="plcHotPlaceContent" style="display: none;">
@@ -363,39 +367,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     </div>
                 </c:forEach>
                 <div class="clearfix"></div>
-                <nav>
-                    <ul class="pagination">
-                        <%
-                            if (intPage3 > 1) {
-                        %>
-                        <li><a href="?page3=<%=intPage3-5 %>&tab=2&key=${key}" aria-label="Previous"><span
-                                aria-hidden="true">«</span></a></li>
-                        <li><a href="?page3=1&tab=2&key=${key}">1</a></li>
-                        <%if (intPage3 > 2) { %>
-                        <li><a href="#">...</a></li>
-                        <li><a href="?page3=<%=intPage3-1 %>&tab=2&key=${key}"><%=intPage3 - 1 %>
-                        </a></li>
-                        <%
+                <c:if test="<%=intPagecount3>1%>">
+                    <nav>
+                        <ul class="pagination">
+                            <%
+                                if (intPage3 > 1) {
+                            %>
+                            <li><a href="?page3=<%=intPage3-5 %>&tab=2&key=${key}" aria-label="Previous"><span
+                                    aria-hidden="true">«</span></a></li>
+                            <li><a href="?page3=1&tab=2&key=${key}">1</a></li>
+                            <%if (intPage3 > 2) { %>
+                            <li><a href="#">...</a></li>
+                            <li><a href="?page3=<%=intPage3-1 %>&tab=2&key=${key}"><%=intPage3 - 1 %>
+                            </a></li>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                        <li class="active"><a href="?page3=<%=intPage3%>&tab=2&key=${key}"><%=intPage3 %>
-                        </a></li>
-                        <%
-                            if (intPage3 < intPagecount3) {
-                                if (intPage3 < intPagecount3 - 1) {
-                        %>
-                        <li><a href="?page3=<%=intPage3+1 %>&tab=2&key=${key}"><%=intPage3 + 1 %>
-                        </a></li>
-                        <li><a href="#">...</a></li>
-                        <%} %>
-                        <li><a href="?page3=<%=intPagecount3 %>&tab=2&key=${key}"><%=intPagecount3%>
-                        </a></li>
-                        <li><a href="?page3=<%=intPage3+5 %>&tab=2&key=${key}" aria-label="Next"><span
-                                aria-hidden="true">»</span></a></li>
-                        <%} %>
-                    </ul>
-                </nav>
+                            %>
+                            <li class="active"><a href="?page3=<%=intPage3%>&tab=2&key=${key}"><%=intPage3 %>
+                            </a></li>
+                            <%
+                                if (intPage3 < intPagecount3) {
+                                    if (intPage3 < intPagecount3 - 1) {
+                            %>
+                            <li><a href="?page3=<%=intPage3+1 %>&tab=2&key=${key}"><%=intPage3 + 1 %>
+                            </a></li>
+                            <li><a href="#">...</a></li>
+                            <%} %>
+                            <li><a href="?page3=<%=intPagecount3 %>&tab=2&key=${key}"><%=intPagecount3%>
+                            </a></li>
+                            <li><a href="?page3=<%=intPage3+5 %>&tab=2&key=${key}" aria-label="Next"><span
+                                    aria-hidden="true">»</span></a></li>
+                            <%} %>
+                        </ul>
+                    </nav>
+                </c:if>
             </div>
         </div>
     </div>

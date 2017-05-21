@@ -24,8 +24,27 @@ public class RouteEntity {
     private UserEntity userByRouUserId;
     private UserEntity userByRouUserId_0;
     private Integer rouUserId;
+    private Date tradeTime;
+    private int tradeUser;
+    private String tradeStatus;
+
+    @Transient
+    public Date getTradeTime(){return this.tradeTime;}
+    @Transient
+    public void setTradeTime(Date tradeTime){this.tradeTime = tradeTime;}
+
+    @Transient
+    public int getTradeUser(){return this.tradeUser;}
+    @Transient
+    public void setTradeUser(int tradeuser){this.tradeUser = tradeuser;}
+
+    @Transient
+    public String getTradeStatus(){return this.tradeStatus;}
+    @Transient
+    public void setTradeStatus(String tradeStatus){this.tradeStatus = tradeStatus;}
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rou_id", nullable = false)
     public int getRouId() {
         return rouId;

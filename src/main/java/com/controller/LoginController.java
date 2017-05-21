@@ -41,6 +41,7 @@ public class LoginController {
         if(map.get("msg")=="1")
         {
             user=userService.getUserByName(userName);
+            user=userService.updateUserExpAndLevel(user.getUserId(),2);
             session.setAttribute("currentUser",user);
         }
         return new ResponseEntity<Object>(map, HttpStatus.OK);

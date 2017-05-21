@@ -6,8 +6,8 @@
     <title>LaoTao</title>
     <%
         String account = "login";
-        String index = "/";
-        UserEntity user= (UserEntity) session.getAttribute("currentUser");
+        String index = "login";
+        UserEntity user = (UserEntity) session.getAttribute("currentUser");
         if (user != null) {
             account = user.getUserName();
             index = "myPage";
@@ -16,12 +16,12 @@
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="js/jquery.min.js"></script>
-    <script src="js/skill.js"></script>
     <!-- Custom Theme files -->
     <!--menu-->
     <script src="js/scripts.js"></script>
     <link href="css/styles.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
+    <script src="js/skill.js"></script>
     <link href="css/myStyle.css" rel="stylesheet" type="text/css"/>
     <link href="css/jNotify.jquery.css" rel="stylesheet" type="text/css"/>
     <script src="js/jNotify.jquery.js" type="text/javascript"></script>
@@ -60,7 +60,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="top-nav">
             <ul class="right-icons">
                 <li><a href="/city"><i class="glyphicon glyphicon-user"> </i>City </a></li>
-                <li><a href="<%=account%>"><i class="glyphicon glyphicon-user"> </i><%=account%></a></li>
+                <li><a href="<%=index%>"><i class="glyphicon glyphicon-user"> </i><%=account%>
+                </a></li>
                 <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i
                         class="glyphicon glyphicon-search"> </i> </a></li>
             </ul>
@@ -196,7 +197,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h3>热门美食路线</h3>
             <div class="content-bottom-in">
                 <ul id="flexiselDemo1">
-                    <c:forEach items="${route}" begin="0" end="6" step="1" var="route">
+                    <c:forEach items="${route}" var="route">
                         <li>
                             <div class="project-fur">
                                 <a href="/readRoute/${route.rouId}" class="mask">
@@ -271,7 +272,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <c:forEach items="${article}" begin="<%= i%>" end="<%= i+pagesize-1%>" step="1" var="article">
                 <div class="art_container">
                     <div class="art_picture">
-                        <a href="readArticle/${article.artId}"><img src="${article.artTitlePic}" class="img-responsive" alt=""/></a>
+                        <a href="readArticle/${article.artId}"><img src="${article.artTitlePic}" class="img-responsive"
+                                                                    alt=""/></a>
                     </div>
                     <div class="art_content">
                         <div class="blog-top">
@@ -297,39 +299,41 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
             </c:forEach>
             <div class="clearfix"></div>
-            <nav>
-                <ul class="pagination">
-                    <%
-                        if (intPage > 1) {
-                    %>
-                    <li><a href="?page=<%=intPage-5 %>" aria-label="Previous"><span
-                            aria-hidden="true">«</span></a></li>
-                    <li><a href="?page=1">1</a></li>
-                    <%if (intPage > 2) { %>
-                    <li><a href="#">...</a></li>
-                    <li><a href="?page=<%=intPage-1 %>"><%=intPage - 1 %>
-                    </a></li>
-                    <%
+            <c:if test="<%=intPagecount>1%>">
+                <nav>
+                    <ul class="pagination">
+                        <%
+                            if (intPage > 1) {
+                        %>
+                        <li><a href="?page=<%=intPage-5 %>" aria-label="Previous"><span
+                                aria-hidden="true">«</span></a></li>
+                        <li><a href="?page=1">1</a></li>
+                        <%if (intPage > 2) { %>
+                        <li><a href="#">...</a></li>
+                        <li><a href="?page=<%=intPage-1 %>"><%=intPage - 1 %>
+                        </a></li>
+                        <%
+                                }
                             }
-                        }
-                    %>
-                    <li class="active"><a href="?page=<%=intPage%>"><%=intPage %>
-                    </a></li>
-                    <%
-                        if (intPage < intPagecount) {
-                            if (intPage < intPagecount - 1) {
-                    %>
-                    <li><a href="?page=<%=intPage+1 %>"><%=intPage + 1 %>
-                    </a></li>
-                    <li><a href="#">...</a></li>
-                    <%} %>
-                    <li><a href="?page=<%=intPagecount %>"><%=intPagecount%>
-                    </a></li>
-                    <li><a href="?page=<%=intPage+5 %>" aria-label="Next"><span aria-hidden="true">»</span></a>
-                    </li>
-                    <%} %>
-                </ul>
-            </nav>
+                        %>
+                        <li class="active"><a href="?page=<%=intPage%>"><%=intPage %>
+                        </a></li>
+                        <%
+                            if (intPage < intPagecount) {
+                                if (intPage < intPagecount - 1) {
+                        %>
+                        <li><a href="?page=<%=intPage+1 %>"><%=intPage + 1 %>
+                        </a></li>
+                        <li><a href="#">...</a></li>
+                        <%} %>
+                        <li><a href="?page=<%=intPagecount %>"><%=intPagecount%>
+                        </a></li>
+                        <li><a href="?page=<%=intPage+5 %>" aria-label="Next"><span aria-hidden="true">»</span></a>
+                        </li>
+                        <%} %>
+                    </ul>
+                </nav>
+            </c:if>
         </div>
     </div>
 </div>

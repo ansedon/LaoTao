@@ -76,16 +76,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="login-top">
             <div id="tip" style=" border:0px ;text-align:center"></div>
             <div class="form-info">
-                    <input type="text" id="userName"  placeholder="Name" required="required" name="username" >
-                    <input type="text"  id="phone" placeholder="Phone number" required="required" name="phone" >
-                    <input type="text"  id="bCity" placeholder="birth city" required="required" name="bCity" >
-                    <input type="text"  id="lCity" placeholder="live city" required="required" name="lCity">
-                    <input type="password" id="password" placeholder="password " required="required" name="password">
-                    <input type="password" id="pw" placeholder="password again " required="required" name="pw2">
+                    <input type="text" id="userName"  placeholder="Name" name="username" >
+                    <input type="text"  id="phone" placeholder="Phone number"  name="phone" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" >
+                    <input type="text"  id="bCity" placeholder="birth city" name="bCity" >
+                    <input type="text"  id="lCity" placeholder="live city" name="lCity">
+                    <input type="password" id="password" placeholder="password " name="password">
+                    <input type="password" id="pw" placeholder="password again " name="pw2">
                     <label class="hvr-sweep-to-right">
                         <input type="submit" value="Sign Up" id="submit" onclick="register()">
                     </label>
-                <p>Already have a Fanfo account? <a href="/login">Login</a></p>
+                <p>Already have a Laotao account? <a href="/login">Login</a></p>
             </div>
         </div>
     </div>

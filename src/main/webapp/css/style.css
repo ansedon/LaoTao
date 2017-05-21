@@ -743,6 +743,11 @@ a.mask {
 	width: 250px;
 	margin-left: 0px;
 }
+.col-right{
+	float: left;
+	margin-left: 9%;
+}
+
 .col-md1 {
   	padding: 1.5em;
   	background: #fff;
@@ -786,6 +791,34 @@ p.cost {
 .col-md2 {
   	padding: 0 0 1em;
 }
+
+.less{
+	text-decoration: none;
+	font-size: 0.9em;
+	border: 1px solid #fec707;
+	color: #fec707;
+	display: inline-block;
+	padding-bottom: 0.3em;
+	padding-left: 0.7em;
+	padding-right: 0.7em;
+	padding-top: 0.3em;
+	margin-bottom: 0;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0.9em;
+}
+.less {
+	font-size: 0.8em;
+	padding: 0.3em 0.7em;
+	margin: 0.5em 0 0;
+}
+a.less:hover
+{
+	color: #fec707;
+}
+
+
+
 a.more{
 	text-decoration: none;
 	font-size: 0.9em;
@@ -809,6 +842,25 @@ a.more:hover{
 	padding-top: 30px;
 	display: flex;
 	flex-flow: row wrap;
+}
+
+.refer-res-1{
+	width:50%;
+	height:auto;
+	top:0;
+	display: flex;
+	padding-left:50px;
+	flex-flow: row wrap;
+}
+
+.refer-res-2{
+	width:50%;
+	height:auto;
+	display: flex;
+	flex-flow: row wrap;
+	top:0;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 .project-top {
@@ -882,6 +934,23 @@ a.more-in{
 	display:inline-block;
 	margin: 1em 0 0;
 }
+
+.hvr-nosweep-to-right {
+	display: inline-block;
+	vertical-align: middle;
+	-webkit-transform: translateZ(0);
+	transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+	position: relative;
+	-webkit-transition-property: color;
+	transition-property: color;
+	-webkit-transition-duration: 0.3s;
+	transition-duration: 0.3s;
+}
+
 /* Sweep To Right */
 .hvr-sweep-to-right {
   display: inline-block;

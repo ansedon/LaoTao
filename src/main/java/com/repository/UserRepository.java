@@ -14,9 +14,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity,Integer>{
     UserEntity findByUserName(String username);
+
+    UserEntity findByUserId(int userId);
+
     UserEntity findByUserTel(String phone);
+
     @Modifying
     @Transactional
-    @Query("update UserEntity us set us.userMoney =:qMoney, us.userExperience =:qExp where us.userId=:qId")
+    @Query("update UserEntity us set us.userMoney =us.userMoney+:qMoney, us.userExperience =us.userExperience+:qExp where us.userId=:qId")
     void updateUser(@Param("qMoney") int money, @Param("qExp") int exp, @Param("qId") int user_id);
+
+    @Modifying
+    @Transactional
+    @Query("update UserEntity user set user.userCertStatus=:status where user.userId=:userId")
+    void updateUserCertStatus(@Param("status") int status, @Param("userId") int userId);
+
+    @Modifying
+    @Transactional
+    @Query("update UserEntity user set user.userLevel=:level where user.userId=:userId")
+    void updateUserLevel(@Param("level") int level, @Param("userId") int userId);
 }

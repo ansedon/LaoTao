@@ -9,7 +9,7 @@
 <%@ page isELIgnored="false" import="java.util.*,com.model.*,java.sql.Date" pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>BuyConfirm</title>
+    <title>markRoute</title>
     <script language="JavaScript" src="/js/skill.js"></script>
     <script src="/js/skill.js"></script>
     <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all"/>
@@ -62,7 +62,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="container">
     <div class="leave">
         <h4>确认交易？（评价路线获取经验值）：</h4>
-        <form action="/finishBuy/${route.rouId}" method="post">
+        <form action="../routeFinish/${route.rouId}" method="post">
             <textarea name="comment" placeholder="" id="comment"></textarea>
             <label class="hvr-sweep-to-right">
                 <input type="submit" id="confirm" value="确认">
@@ -79,7 +79,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer-bottom">
         <div class="container">
             <div class="col-md-4 footer-logo">
-                <h2><a href="home.html">Laotao</a></h2>
+                <h2><a href="/">Laotao</a></h2>
             </div>
             <div class="col-md-8 footer-class">
                 <p>Copyright &copy; 2016.Laotao All rights reserved.</p>
