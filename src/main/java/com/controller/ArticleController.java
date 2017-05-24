@@ -10,6 +10,7 @@ import com.tool.GetDate;
 import com.tool.ImgUtil;
 import com.tool.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -52,8 +53,8 @@ public class ArticleController {
 
     Map<String, String> map = new HashMap<>();
 
-    @RequestMapping(value = "/readArticle/{id}", method = RequestMethod.GET)
-    public String showArticle(@PathVariable("id") Integer articleId, ModelMap modelMap, HttpSession session) {
+    @RequestMapping(value = "/readArticle", method = RequestMethod.GET)
+    public String showArticle(@RequestParam("id") Integer articleId, ModelMap modelMap, HttpSession session) {
         //获取帖子
         ArticleEntity articleEntity = articleService.findArticleByArtId(articleId);
         modelMap.addAttribute("article", articleEntity);

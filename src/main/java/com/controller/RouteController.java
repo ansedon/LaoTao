@@ -41,8 +41,8 @@ public class RouteController {
     @Autowired
     UserPageService userPageService;
 
-    @RequestMapping(value = "/readRoute/{id}", method = RequestMethod.GET)
-    public String ShowRoute(@PathVariable("id") Integer routeId, ModelMap modelMap, HttpSession session)
+    @RequestMapping(value = "/readRoute", method = RequestMethod.GET)
+    public String ShowRoute(@RequestParam("id") Integer routeId, ModelMap modelMap, HttpSession session)
     {
         UserEntity user = (UserEntity) session.getAttribute("currentUser");
         RouteEntity routeEntity = routeRepository.findOne(routeId);

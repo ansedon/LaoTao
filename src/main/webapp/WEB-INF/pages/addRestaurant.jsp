@@ -214,7 +214,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </body>
 
 <div class="project-top" style="text-align:center">
-    <a href="/readArticle/<%=(int) session.getAttribute("referArtId")%>" class="hvr-sweep-to-right more">添加完毕</a>
+    <a href="/readArticle?id=<%=(int) session.getAttribute("referArtId")%>" class="hvr-sweep-to-right more">添加完毕</a>
 </div>
 
 <div class="blog">

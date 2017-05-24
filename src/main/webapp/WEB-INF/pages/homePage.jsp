@@ -200,12 +200,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <c:forEach items="${route}" var="route">
                         <li>
                             <div class="project-fur">
-                                <a href="/readRoute/${route.rouId}" class="mask">
+                                <a href="/readRoute?id=${route.rouId}" class="mask">
                                     <img class="img-responsive zoom-img" src=${route.rouTitlePic} alt="">
                                     <span class="four">${route.rouPrice}</span>
                                 </a>
                                 <div class="most-1">
-                                    <h5><a href="/readRoute/${route.rouId}">${route.rouTitle}
+                                    <h5><a href="/readRoute?id=${route.rouId}">${route.rouTitle}
                                     </a></h5>
                                     <p>by ${route.userByRouUserId.userName}
                                     </p>
@@ -272,12 +272,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <c:forEach items="${article}" begin="<%= i%>" end="<%= i+pagesize-1%>" step="1" var="article">
                 <div class="art_container">
                     <div class="art_picture">
-                        <a href="readArticle/${article.artId}"><img src="${article.artTitlePic}" class="img-responsive"
+                        <a href="readArticle?id=${article.artId}"><img src="${article.artTitlePic}" class="img-responsive"
                                                                     alt=""/></a>
                     </div>
                     <div class="art_content">
                         <div class="blog-top">
-                            <h4><a href="readArticle/${article.artId}">${article.artTitle}
+                            <h4><a href="readArticle?id=${article.artId}">${article.artTitle}
                             </a></h4>
                             <h5>Posted By : <a
                                     href="javascript:void(0);">${article.userByArtUserId.userName}
@@ -285,7 +285,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </h5>
                             <h5><a href="javascript:void(0);">阅读量：${article.artReadNum}
                             </a></h5>
-                            <a class="hvr-sweep-to-right more" href="readArticle/${article.artId}">Read
+                            <a class="hvr-sweep-to-right more" href="readArticle?id=${article.artId}">Read
                                 More</a>
                             <div class="links">
                                 <ul class="blog-links">

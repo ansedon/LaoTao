@@ -143,6 +143,6 @@ public class RestaurantController {
         referEntity.setReferResId(restaurantEntity.getResId());
         referEntity.setReferArtId(artId);
         referRepository .saveAndFlush(referEntity);
-        return "redirect:/readArticle/"+Integer.toString(artId);
+        return "redirect:/readArticle?id="+Integer.toString(artId);
     }
 }

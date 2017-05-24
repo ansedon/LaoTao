@@ -357,16 +357,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                var="art">
                                         <div class="art_container">
                                             <div class="art_picture">
-                                                <a href="readArticle/${art.artId}"><img src="${art.artTitlePic}"
+                                                <a href="readArticle?id=${art.artId}"><img src="${art.artTitlePic}"
                                                                                         class="img-responsive" alt=""/></a>
                                             </div>
                                             <div class="art_content">
                                                 <div class="blog-top">
-                                                    <h4><a href="readArticle/${art.artId}">${art.artTitle}</a></h4>
+                                                    <h4><a href="readArticle?id=${art.artId}">${art.artTitle}</a></h4>
                                                     <h5>Posted By :${art.userByArtUserId} | Date
                                                         : ${art.artPostTime}</h5>
                                                     <h5>阅读量：${art.artReadNum}</h5>
-                                                    <a class="hvr-sweep-to-right more" href="readArticle/${art.artId}">Read
+                                                    <a class="hvr-sweep-to-right more" href="readArticle?id=${art.artId}">Read
                                                         More</a>
                                                     <div class="links">
                                                         <ul class="blog-links">
@@ -451,12 +451,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                var="rou">
                                         <div class="art_container">
                                             <div class="art_picture">
-                                                <a href="/readRoute/${rou.rouId}"><img
+                                                <a href="/readRoute?id=${rou.rouId}"><img
                                                         src=${rou.rouTitlePic} class="img-responsive" alt=""></a>
                                             </div>
                                             <div class="art_content">
                                                 <div class="blog-top">
-                                                    <h4><a href="/readRoute/${rou.rouId}">${rou.rouTitle}</a></h4>
+                                                    <h4><a href="/readRoute?id=${rou.rouId}">${rou.rouTitle}</a></h4>
                                                     <h5>交易金额：${rou.rouPrice}饭团</h5>
                                                     <h5>购买时间：${rou.tradeTime}</h5>
                                                     <c:if test="${rou.tradeStatus.equals('0')}">
@@ -542,12 +542,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <c:forEach items="${routePublish}" begin="<%=i4%>" end="<%=i4%>" step="1" var="rou">
                                         <div class="col-md-4 box_2">
                                             <div class="project-fur">
-                                                <a href="/readArticle/${rou.rouId}" class="mask">
+                                                <a href="/readRoute?id=${rou.rouId}" class="mask">
                                                     <img class="img-responsive zoom-img" src=${rou.rouTitlePic} alt="">
                                                     <span class="four">${rou.rouPrice}</span>
                                                 </a>
                                                 <div class="most-1">
-                                                    <h5><a href="/readArticle/${rou.rouId}">${rou.rouTitle}</a></h5>
+                                                    <h5><a href="/readRoute?id=${rou.rouId}">${rou.rouTitle}</a></h5>
                                                     <p>by ${rou.userByRouUserId.userName}</p>
                                                     <c:if test="${rou.rouStatus=='1'}">
                                                         <a class="hvr-sweep-to-right more"
