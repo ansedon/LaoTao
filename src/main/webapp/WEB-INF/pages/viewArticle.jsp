@@ -167,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </a>
                         </div>
                         <div class="media-body">
-                            <h4 class="media-heading">${comment.userByCommentatorId.userName}</h4>
+                            <h4 class="media-heading">${comment.userByCommentatorId.userName}&nbsp<small>${comment.artComTime}</small></h4>
                             <p>${comment.artComContent}</p>
                         </div>
                     </div>
@@ -196,7 +196,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <c:forEach items="${restaurant}" var="res">
                         <div class="col-md-3 project-grid">
                             <div class="project-grid-top">
-                                <a><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
+                                <a href="/resPage?resId=${res.resId}"><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
                                 <div class="col-md1">
                                     <div class="col-md2">
                                         <div class="col-md3">

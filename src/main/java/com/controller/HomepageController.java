@@ -24,7 +24,7 @@ import java.util.List;
  * Created by ansedon on 2017/5/11.
  */
 @Controller
-public class HomePageController {
+public class HomepageController {
     @Autowired
     ArticleService articleService;
     @Autowired

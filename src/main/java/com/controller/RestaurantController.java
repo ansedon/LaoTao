@@ -1,9 +1,7 @@
 package com.controller;
 
-import com.model.ReferEntity;
-import com.model.ResCollectEntity;
-import com.model.RestaurantEntity;
-import com.model.UserEntity;
+import com.model.*;
+import com.repository.DishRepository;
 import com.repository.ReferRepository;
 import com.repository.RestaurantRepository;
 import com.service.RestaurantService;
@@ -16,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import javax.persistence.GeneratedValue;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
@@ -41,6 +39,8 @@ public class RestaurantController {
     SearchService searchService;
     @Autowired
     UserService userService;
+    @Autowired
+    DishRepository dishRepository;
 
     Map<String, String> map = new HashMap<>();
 
@@ -142,7 +142,89 @@ public class RestaurantController {
         ReferEntity referEntity=new ReferEntity();
         referEntity.setReferResId(restaurantEntity.getResId());
         referEntity.setReferArtId(artId);
-        referRepository .saveAndFlush(referEntity);
+        referRepository.saveAndFlush(referEntity);
         return "redirect:/readArticle?id="+Integer.toString(artId);
+    }
+
+    //加载餐馆页
+    @RequestMapping(value = "/resPage",method=RequestMethod.GET)
+    public String resPage(@RequestParam("resId") int resId, ModelMap modelMap, HttpSession session){
+        //查找餐馆详细信息
+        RestaurantEntity res = restaurantRepository.findByResId(resId);
+        modelMap.addAttribute("res",res);
+        session.setAttribute("currentResId",resId);
+        //查找菜品信息
+        List<DishEntity> dishList = new ArrayList<DishEntity>();
+        dishList = dishRepository.findByRestaurantId(resId);
+        modelMap.addAttribute("dishlist",dishList);
+
+        return "restaurantPage";
+    }
+
+    //新增菜品
+    @RequestMapping(value="/addPage",method=RequestMethod.GET)
+    public String addPage(@RequestParam("resId") int resId, ModelMap modelMap){
+        //查找餐馆详细信息
+        RestaurantEntity res = restaurantRepository.findByResId(resId);
+        modelMap.addAttribute("res",res);
+        return "addDish";
+    }
+
+    @RequestMapping(value="/addDish",method=RequestMethod.POST)
+    public String addDish(@RequestParam("dishname") String dishName, @RequestParam("dishprice")double dishPrice,
+                          @RequestParam("dishPic")CommonsMultipartFile file, HttpSession session){
+        //保存文件到临时目录
+        String savePath = session.getServletContext().getRealPath("/")
+                + "/images/" + file.getOriginalFilename();
+        File saveFile = new File(savePath);
+        try {
+            file.transferTo(saveFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String dishPic="images/"+file.getOriginalFilename();
+        int resId = (int)session.getAttribute("currentResId");
+        DishEntity dishEntity = new DishEntity();
+
+        dishEntity.setDishName(dishName);
+        dishEntity.setDishPrice(dishPrice);
+        dishEntity.setDishPic(dishPic);
+        dishEntity.setRestaurantId(resId);
+        dishRepository.saveAndFlush(dishEntity);
+        return "redirect:/resPage?resId="+Integer.toString(resId);
+    }
+
+    //编辑菜品信息
+    @RequestMapping(value="/editPage", method=RequestMethod.GET)
+    public String editPage(@RequestParam("dishId") int dishId, ModelMap modelMap, HttpSession session){
+        DishEntity dish = dishRepository.findByDishId(dishId);
+        RestaurantEntity res = restaurantRepository.findByResId(dish.getRestaurantId());
+        modelMap.addAttribute("res",res);
+        modelMap.addAttribute("dish",dish);
+        session.setAttribute("currentDishId",dish.getDishId());
+        return "editDish";
+    }
+
+    @RequestMapping(value="/edit",method=RequestMethod.POST)
+    public String editDish(@RequestParam("dishname") String dishName, @RequestParam("dishprice")Double dishPrice,
+    @RequestParam("dishPic")CommonsMultipartFile file, HttpSession session){
+        int dishId = (int)session.getAttribute("currentDishId");
+        DishEntity dish = dishRepository.findByDishId(dishId);
+        String dishpic = dish.getDishPic();
+        if(file.getOriginalFilename()!="") {
+            String savePath = session.getServletContext().getRealPath("/")
+                    + "/images/" + file.getOriginalFilename();
+            File saveFile = new File(savePath);
+            try {
+                file.transferTo(saveFile);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            dishpic = "images/" + file.getOriginalFilename();
+        }
+        dishRepository.updateDish(dishName, dishPrice, dishpic,dishId);
+        dishRepository.flush();
+        int resId = (int)session.getAttribute("currentResId");
+        return "redirect:/resPage?resId=" + Integer.toString(resId);
     }
 }

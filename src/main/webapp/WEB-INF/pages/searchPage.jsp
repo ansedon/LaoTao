@@ -182,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <c:forEach items="${searchRestaurants}" begin="<%=i1%>" end="<%=i1+pagesize1-1%>" step="1" var="res">
                     <div class="col-md-3 project-grid">
                         <div class="project-grid-top">
-                            <a><img class="img-responsive zoom-img" src=${res.resPic} alt=""/></a>
+                            <a href="/resPage?resId=${res.resId}"><img class="img-responsive zoom-img" src=${res.resPic} alt=""/></a>
                             <div class="col-md1">
                                 <div class="col-md2">
                                     <div class="col-md3">

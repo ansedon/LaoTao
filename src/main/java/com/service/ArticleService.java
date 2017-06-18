@@ -45,7 +45,7 @@ public class ArticleService {
     }
 
     public List<ArtCommentEntity> findArtComByArtId(int artId) {
-        return artCommentRepository.findByComArtIdOrderByArtComTime(artId);
+        return artCommentRepository.findByComArtIdOrderByArtComTimeDesc(artId);
     }
 
     public void updateArtReadNum(int artId) {
