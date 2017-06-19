@@ -199,7 +199,7 @@ function artComment(userName, artId) {
                     + "<img class=\"media-object\" src=\"/images/av.png\" alt=\"\"/></a>"
                     + "</div>"
                     + "<div class=\"media-body\">"
-                    + "<h4 class=\"media-heading\">" + userName + "</h4>"
+                    + "<h4 class=\"media-heading\">" + userName + "&nbsp<small>刚刚</small></h4>"
                     + "<p>" + comment + "</p>"
                     + "</div>"
                 box += " <h5>已评论过</h5>"

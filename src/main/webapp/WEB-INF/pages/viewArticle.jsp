@@ -159,6 +159,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
             <div class="single-grid">
                 <h5>Our Comment</h5>
+                <div id="loadData" class="media">
+                </div>
                 <c:forEach items="${comList}" var="comment">
                     <div class="media">
                         <div class="media-left">
@@ -172,8 +174,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                 </c:forEach>
-                <div id="loadData" class="media">
-                </div>
             </div>
             <div id="comBox" class="leave">
                 <c:if test="${!ifComment}">
@@ -196,7 +196,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <c:forEach items="${restaurant}" var="res">
                         <div class="col-md-3 project-grid">
                             <div class="project-grid-top">
-                                <a href="/resPage?resId=${res.resId}"><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
+                                <a><img src="/${res.resPic}" class="img-responsive zoom-img" alt=""></a>
                                 <div class="col-md1">
                                     <div class="col-md2">
                                         <div class="col-md3">

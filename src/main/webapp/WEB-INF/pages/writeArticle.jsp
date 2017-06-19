@@ -83,31 +83,31 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="login-right">
     <div class="container">
         <div class="leave">
-            <div class="price-grid">
-                <div class="col-sm-4 price-top">
+            <div class="price-grid" style="padding-bottom: 0px">
+                <div class="col-sm-3 price-top" style="margin-left: 60px">
                     <h4>省份</h4><input id="artAddrProvince" type="text" name="artAddrProvince">
                 </div>
-                <div class="col-sm-4 price-top">
+                <div class="col-sm-3 col-sm-offset-1 price-top">
                     <h4>城市</h4><input id="artAddrCity" type="text" name="artAddrCity">
                 </div>
-                <div class="col-sm-4 price-top">
+                <div class="col-sm-3 col-sm-offset-1 price-top">
                     <h4>县/区</h4><input id="artAddrStreet" type="text" name="artAddrStreet">
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <br/><br/><br/>
 
-            <ul class="loan-col1">
+
+            <ul class="loan-col1" style="margin-left:7%">
                 <li><input id="artTitle" type="text" name="art_title" placeholder="请在这里输入标题" required></li>
             </ul>
             <br/>
-            <br/>
-            <textarea name="content" id="editor" style="width:1024px;height:500px;"></textarea>
+
+            <textarea name="content" id="editor" style="width:1000px;height:500px;margin-left:7%"></textarea>
             <script type="text/javascript">
                 var editor = UE.getEditor('editor');
             </script>
             <br/>
-            <label class="hvr-sweep-to-right">
+            <label class="hvr-sweep-to-right" style="margin-left:7%">
                 <input type="submit" value="发表文章" onclick="writeArticle(<%=userId%>)">
             </label>
         </div>

@@ -150,7 +150,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </a>
                                 </div>
                                 <div class="media-body">
-                                    <h4 class="media-heading">${com.userByTradeUserId.userName}</h4>
+                                    <h4 class="media-heading">${com.userByTradeUserId.userName}&nbsp<small>${com.rouTradeTime}</small></h4>
                                     <p>${com.rouComment}</p>
                                 </div>
                             </div>

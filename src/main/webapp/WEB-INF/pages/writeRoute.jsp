@@ -77,13 +77,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
         <div class="leave">
             <div class="price-grid">
-                <div class="col-sm-4 price-top">
+                <div class="col-sm-3 col-sm-offset-1 price-top" >
                     <h4>省份</h4><input id="rouAddrProvince" type="text" name="rouAddrProvince">
                 </div>
-                <div class="col-sm-4 price-top">
+                <div class="col-sm-3 col-sm-offset-1 price-top">
                     <h4>城市</h4><input id="rouAddrCity" type="text" name="rouAddrCity">
                 </div>
-                <div class="col-sm-4 price-top">
+                <div class="col-sm-3 col-sm-offset-1 price-top">
                     <h4>县/区</h4><input id="rouAddrStreet" type="text" name="rouAddrStreet">
                 </div>
                 <div class="clearfix"></div>

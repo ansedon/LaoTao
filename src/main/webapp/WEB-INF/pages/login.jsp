@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->
 <div class=" banner-buying">
     <div class=" container">
-        <h3><span>Log</span>in</h3>
+        <h3><span>登</span>录</h3>
         <!---->
         <div class="clearfix"></div>
         <!--initiate accordion-->
@@ -56,18 +56,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="login-right">
     <div class="container">
-        <div class="login-top">
+        <div class="login-top" style="width: 500px">
             <div id="tip" style=" border:0px ;text-align:center"></div>
             <div class="form-info">
                 <input type="text" class="text" placeholder="username" required name="username" id="userName">
                 <input type="password" placeholder="Password" required name="password" id="password">
                 <label class="hvr-sweep-to-right">
-                    <input type="submit" id="login" value="submit" onclick="login()">
+                    <input type="submit" id="login" value="登录" onclick="login()">
                 </label>
             </div>
             <div class="create">
-                <h4>New To Fanfo?</h4>
-                <a class="hvr-sweep-to-right" href="register">Create an Account</a>
+                <p>第一次来到这里?<a href="register">点击创建账户</a></p>
                 <div class="clearfix"></div>
             </div>
         </div>

@@ -447,7 +447,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                             for (; m2 < pagesize2 && i2 < introwcount2; i2++, m2++) {
                                                 //Route p = route.get(i2);
                                     %>
-                                    <c:forEach items="${routeBought}" begin="<%=i2%>" end="<%=i2+1%>" step="1"
+                                    <c:forEach items="${routeBought}" begin="<%=i2%>" end="<%=i2%>" step="1"
                                                var="rou">
                                         <div class="art_container">
                                             <div class="art_picture">

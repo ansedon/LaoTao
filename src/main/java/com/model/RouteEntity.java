@@ -208,7 +208,7 @@ public class RouteEntity {
     }
 
     @Basic
-    @Column(name = "rou_user_id", nullable = true,insertable = false,updatable = false)
+    @Column(name = "rou_user_id", nullable = true)
     public Integer getRouUserId() {
         return rouUserId;
     }

@@ -42,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!--//-->
 <div class=" banner-buying">
     <div class=" container">
-        <h3><span>Regis</span>ter</h3>
+        <h3><span>注</span>册</h3>
         <!---->
         <div class="clearfix"> </div>
         <!--initiate accordion-->
@@ -72,20 +72,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="login-right">
     <div class="container">
-        <h3>Register</h3>
-        <div class="login-top">
+        <h3>注册</h3>
+        <div class="login-top" style="width: 500px">
             <div id="tip" style=" border:0px ;text-align:center"></div>
             <div class="form-info">
-                    <input type="text" id="userName"  placeholder="Name" name="username" >
-                    <input type="text"  id="phone" placeholder="Phone number"  name="phone" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" >
-                    <input type="text"  id="bCity" placeholder="birth city" name="bCity" >
-                    <input type="text"  id="lCity" placeholder="live city" name="lCity">
-                    <input type="password" id="password" placeholder="password " name="password">
-                    <input type="password" id="pw" placeholder="password again " name="pw2">
-                    <label class="hvr-sweep-to-right">
-                        <input type="submit" value="Sign Up" id="submit" onclick="register()">
+                    <input type="text" id="userName"  placeholder="用户名" name="username" >
+                    <input type="text"  id="phone" placeholder="手机号码"  name="phone" onKeypress="return (/[\d]/.test(String.fromCharCode(event.keyCode)))" >
+                    <input type="text"  id="bCity" placeholder="出生城市" name="bCity" >
+                    <input type="text"  id="lCity" placeholder="现居城市" name="lCity">
+                    <input type="password" id="password" placeholder="密码 " name="password">
+                    <input type="password" id="pw" placeholder="请再次确认密码 " name="pw2">
+                    <label class="hvr-sweep-to-right" style="margin-left: 40%" >
+                        <input type="submit" value="注册" id="submit" onclick="register()">
                     </label>
-                <p>Already have a Laotao account? <a href="/login">Login</a></p>
+                <p>已有老饕账号啦? <a href="/login">登录</a></p>
             </div>
         </div>
     </div>
@@ -96,7 +96,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="footer-bottom">
         <div class="container">
             <div class="col-md-4 footer-logo">
-                <h2><a href="Home">Fanfo</a></h2>
+                <h2><a href="Home">LAOTAO</a></h2>
             </div>
             <div class="clearfix"> </div>
         </div>

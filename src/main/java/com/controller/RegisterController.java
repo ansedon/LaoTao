@@ -18,8 +18,6 @@ import javax.servlet.http.HttpSession;
  * Created by ansedon on 2017/5/10.
  */
 public class RegisterController {
-    private UserEntity userEntity=new UserEntity();
-
     @Autowired
     UserService userService;
 
@@ -34,6 +32,7 @@ public class RegisterController {
     @ResponseBody
     public ResponseEntity<Object> register(@RequestBody Map<String,String> data,HttpSession session)
     {
+        UserEntity userEntity=new UserEntity();
         userEntity.setUserName(data.get("userName").trim());
         userEntity.setUserTel(data.get("phone").trim());
         userEntity.setUserBpCity(data.get("bCity").trim());

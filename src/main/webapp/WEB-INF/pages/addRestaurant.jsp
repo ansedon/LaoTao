@@ -60,27 +60,35 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <br/> <br/>
 <div class="blog">
     <div class="container">
-        <h3>文中提及了新餐馆？</h3>
+        <h3>文中提及了新餐馆？先搜搜看</h3>
     </div>
 </div>
+
 <div class="search-res">
     <div style="width:50%;padding-left:30px;">
-        <div class="facts">
-            <div class="login">
-                <form action="/searchRestaurant" method="get">
-                    <input name="key" class="glyphicon-phone" onFocus="this.value = '';"
-                           onBlur="if (this.value == '') {this.value = '搜餐馆关键词进行筛选';}" value="搜餐馆关键词进行筛选"
-                           type="text">
-                    <input value="" type="submit">
-                </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 col-md-offset-4" >
+                    <div class="facts">
+                        <div class="login">
+                            <form action="/searchRestaurant" method="get">
+                                <input name="key" class="glyphicon-phone" onFocus="this.value = '';"
+                                       onBlur="if (this.value == '') {this.value = '搜餐馆关键词进行筛选';}" value="搜餐馆关键词进行筛选"
+                                       type="text">
+                                <input value="" type="submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div style="width:50%;float:left">
-        <h1 style="text-align: center">文中提及的餐馆</h1>
     </div>
 </div>
+
+
+
+
 <div class="project-top">
     <div class="search-res">
         <div class="refer-res-1">
@@ -211,10 +219,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </nav>
     </c:if>
 </div>
-</body>
+
 
 <div class="project-top" style="text-align:center">
-    <a href="/readArticle?id=<%=(int) session.getAttribute("referArtId")%>" class="hvr-sweep-to-right more">添加完毕</a>
+    <a href="/readArticle?id=<%=(int) session.getAttribute("referArtId")%>" class="hvr-sweep-to-right more">添加完成</a>
 </div>
 
 <div class="blog">
